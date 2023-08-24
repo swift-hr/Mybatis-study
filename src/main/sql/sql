@@ -1,0 +1,101 @@
+------
+country表
+------
+DROP TABLE IF EXISTS `country`;
+CREATE TABLE `country` (
+  `id` int NOT NULL,
+  `countryname` varchar(255) DEFAULT NULL,
+  `countrycode` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+INSERT INTO `country` VALUES (1, '中国', 'CN');
+INSERT INTO `country` VALUES (2, '美国', 'US');
+INSERT INTO `country` VALUES (3, '俄罗斯', 'RU');
+INSERT INTO `country` VALUES (4, '英国', 'GB');
+INSERT INTO `country` VALUES (5, '法国', 'FR');
+
+
+
+------
+sys_user表
+------
+DROP TABLE IF EXISTS `sys_user`;
+CREATE TABLE `sys_user` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `user_name` varchar(50) DEFAULT NULL COMMENT '用户名',
+  `user_password` varchar(50) DEFAULT NULL COMMENT '密码',
+  `user_email` varchar(50) DEFAULT NULL COMMENT '邮箱',
+  `user_info` varchar(50) DEFAULT NULL COMMENT '简介',
+  `head_img` varchar(50) DEFAULT NULL COMMENT '头像',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1002 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户表';
+
+INSERT INTO `sys_user` VALUES (1, 'admin', '123456', 'admin@mybatis.tk', '管理员', NULL, '2016-04-01 17:00:58');
+INSERT INTO `sys_user` VALUES (1001, 'test', '123456', 'test@mybatis.tk', '测试用户', NULL, '2016-04-01 17:01:52');
+
+
+------
+sys_user_role表
+------
+CREATE TABLE `sys_user_role` (
+  `user_id` bigint DEFAULT NULL COMMENT '用户ID',
+  `role_id` bigint DEFAULT NULL COMMENT '角色ID'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户角色关联表';
+
+
+
+------
+sys_role_privilege 表
+------
+
+DROP TABLE IF EXISTS `sys_role_privilege`;
+CREATE TABLE `sys_role_privilege` (
+  `privilege_id` bigint DEFAULT NULL COMMENT '权限ID',
+  `role_id` bigint DEFAULT NULL COMMENT '角色ID'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='角色权限关联表';
+
+INSERT INTO `sys_role_privilege` VALUES (1, 1);
+INSERT INTO `sys_role_privilege` VALUES (1, 3);
+INSERT INTO `sys_role_privilege` VALUES (1, 2);
+INSERT INTO `sys_role_privilege` VALUES (2, 4);
+INSERT INTO `sys_role_privilege` VALUES (2, 5);
+
+------
+sys_privilege 表
+------
+
+DROP TABLE IF EXISTS `sys_privilege`;
+CREATE TABLE `sys_privilege` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '权限ID',
+  `privilege_name` varchar(50) DEFAULT NULL COMMENT '权限名',
+  `privilege_url` varchar(200) DEFAULT NULL COMMENT '权限URL',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='权限表';
+
+INSERT INTO `sys_privilege` VALUES (1, '用户管理', '/users');
+INSERT INTO `sys_privilege` VALUES (2, '角色管理', '/roles');
+INSERT INTO `sys_privilege` VALUES (3, '系统日志', '/logs');
+INSERT INTO `sys_privilege` VALUES (4, '人员维护', '/persons');
+INSERT INTO `sys_privilege` VALUES (5, '单位维护', '/companies');
+
+------
+sys_role  角色表
+------
+
+CREATE TABLE sys_role (
+    id BIGINT NOT NULL AUTO_INCREMENT COMMENT '角色ID',
+    role_name VARCHAR(50) COMMENT '角色名',
+    enabled VARCHAR(50) COMMENT '有效标志',
+    create_by VARCHAR(50) COMMENT '创建人',
+    create_time DATETIME COMMENT '创建时间',
+    PRIMARY KEY (id)
+);
+alter table sys_role comment '角色表';
+
+INSERT INTO sys_role VALUES('1','管理员','1','1',
+'2023-08-24 17:02:14');
+INSERT INTO sys_role VALUES('2','普通用户','1','1',
+'2023-08-24 17:02:34');
