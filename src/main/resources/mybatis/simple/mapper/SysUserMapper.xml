@@ -15,6 +15,17 @@
         </selectKey>
 
     </insert>
+    <update id="updateUser">
+        update sys_user
+            set
+          user_name =#{userName},
+          user_password=#{userPassword} ,
+          user_email=#{userEmail} ,
+          user_info=#{userInfo} ,
+          head_img=#{headImg} ,
+          create_time=#{createTime}
+          where id=#{id}
+    </update>
 
 
     <select id="selectUserAll"

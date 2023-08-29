@@ -38,4 +38,12 @@ public interface SysUserMapper {
 
     void insertUser2(SysUser user);
 
+    /**
+     *更新用户
+     *
+     * @param user
+     * @return
+     */
+    void updateUser(SysUser user);
+
 }

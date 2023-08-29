@@ -14,6 +14,25 @@ public class UserTest extends BaseMapperTest {
 
 
     @Test
+    public void testUpdateUser(){
+        SqlSession sqlSession = this.getSqlSession();
+        try {
+            SysUserMapper userMapper=sqlSession.getMapper(SysUserMapper.class);
+            SysUser user =userMapper.selectById(1);
+            //当前 userName 为 admin
+            Assert.assertEquals("admin",user.getUserName());
+            user.setUserName("admin_test");
+            userMapper.updateUser(user);
+            Assert.assertEquals("admin_test",user.getUserName());
+            //printSysUserList(countryList);
+        } finally {
+        //不要忘记关闭 sqlSession
+            sqlSession.rollback();//回滚
+            //sqlSession.commit();//提交
+            sqlSession.close();
+        }
+        }
+    @Test
     public void testInsertUser(){
         SqlSession sqlSession = this.getSqlSession();
         try {
