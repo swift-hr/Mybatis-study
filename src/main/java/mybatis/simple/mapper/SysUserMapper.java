@@ -2,6 +2,9 @@ package mybatis.simple.mapper;
 
 
 import mybatis.simple.model.SysUser;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,7 +16,18 @@ import mybatis.simple.model.SysUser;
  */
 public interface SysUserMapper {
 
-    SysUser selectAll();
+    /**
+     *查询所有用户
+     * @return
+     */
+    List<SysUser> selectUserAll();
+    /**
+     *通过 id 查询用户
+     *
+     * @param id
+     * @return
+     */
+    SysUser selectById(@Param("id") String id);
 
 
 }

@@ -14,7 +14,7 @@ import mybatis.simple.model.SysRolePrivilege;
  */
 public interface SysPrivilegeMapper {
 
-    SysPrivilege selectAll();
+    SysPrivilege selectPrivilegeAll();
 
 
 }

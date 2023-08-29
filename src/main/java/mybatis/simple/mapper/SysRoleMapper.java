@@ -13,7 +13,7 @@ import mybatis.simple.model.SysRole;
  */
 public interface SysRoleMapper {
 
-    SysRole selectAll();
+    SysRole selectRoleAll();
 
 
 }

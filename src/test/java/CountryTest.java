@@ -1,4 +1,5 @@
 import mybatis.simple.model.Country;
+import mybatis.simple.model.SysUser;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -32,7 +33,9 @@ public class CountryTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
             List<Country> countryList = sqlSession.selectList("selectAll");
-            printCountryList(countryList);
+            //List<SysUser> countryList = sqlSession.selectList("selectUserAll");
+            //printCountryList(countryList);
+            //printSysUserList(countryList);
         } finally {
         //不要忘记关闭 sqlSession
             sqlSession.close();
@@ -42,6 +45,13 @@ public class CountryTest {
 
     private void printCountryList(List<Country> countryList) {
         for(Country country : countryList) {
+           // System.out.println("%-4d%4s%4s\n",country.getId(),country.getCountryCode(),country.getCountryName());
+            System.out.println(country.toString());
+        }
+    }
+
+    private void printSysUserList(List<SysUser> countryList) {
+        for(SysUser country : countryList) {
            // System.out.println("%-4d%4s%4s\n",country.getId(),country.getCountryCode(),country.getCountryName());
             System.out.println(country.toString());
         }

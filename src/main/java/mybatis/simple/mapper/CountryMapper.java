@@ -3,6 +3,8 @@ package mybatis.simple.mapper;
 
 import mybatis.simple.model.Country;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -13,7 +15,7 @@ import mybatis.simple.model.Country;
  */
 public interface CountryMapper  {
 
-    Country selectAll();
+    List<Country> selectAll();
 
 
 }
