@@ -1,3 +1,4 @@
+
 import mybatis.simple.model.Country;
 import mybatis.simple.model.SysUser;
 import org.apache.ibatis.io.Resources;
@@ -11,26 +12,12 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
-public class CountryTest {
+public class CountryTest extends BaseMapperTest {
 
-    private static SqlSessionFactory sqlSessionFactory;
-
-
-
-    @BeforeClass
-    public static void init () {
-        try {
-            Reader reader = Resources.getResourceAsReader("mybatis-config.xml") ;
-            sqlSessionFactory =new SqlSessionFactoryBuilder().build(reader);
-            reader.close();
-        } catch (IOException ignore) {
-            ignore.printStackTrace();
-        }
-    }
 
     @Test
     public void testSelectAll(){
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = this.getSqlSession();
         try {
             //List<Country> countryList = sqlSession.selectList("selectAll");
             List<SysUser> countryList = sqlSession.selectList("selectUserAll");
@@ -57,8 +44,4 @@ public class CountryTest {
         }
     }
 
-
-        public static void main(String[] args) {
-
-}
 }
