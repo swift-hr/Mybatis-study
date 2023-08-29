@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.simple.mapper.SysUserMapper">
+    <insert id="insertUser">
+        insert into sys_user(id,user_name,user_password,user_email,user_info,head_img,create_time)
+                values(#{id},#{userName},#{userPassword},#{userEmail},#{userInfo},#{headImg,jdbcType=BLOB},#{createTime,jdbcType=TIMESTAMP})
 
+    </insert>
+    <insert id="insertUser2">
+         insert into sys_user(user_name,user_password,user_email,user_info,head_img,create_time)
+                values(#{userName},#{userPassword},#{userEmail},#{userInfo},#{headImg,jdbcType=BLOB},#{createTime,jdbcType=TIMESTAMP})
+
+        <selectKey keyColumn="id" resultType="Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+
+    </insert>
 
 
     <select id="selectUserAll"

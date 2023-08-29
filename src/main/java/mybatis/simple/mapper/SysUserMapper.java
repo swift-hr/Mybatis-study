@@ -34,4 +34,8 @@ public interface SysUserMapper {
 
     List<SysRole> selectRolesByUserid(@Param("id") int id);
 
+    void insertUser(SysUser user);
+
+    void insertUser2(SysUser user);
+
 }
