@@ -7,6 +7,22 @@
     <select id="selectUserAll"
             resultType="mybatis.simple.model.SysUser">
         SELECT
+          id ,
+          user_name ,
+          user_password ,
+          user_email ,
+          user_info ,
+          head_img ,
+          create_time
+        FROM
+               sys_user
+        WHERE
+            1=1
+    </select>
+
+    <select id="selectUserAllOld"
+            resultType="mybatis.simple.model.SysUser">
+        SELECT
           id as  id,
           user_name as  userName,
           user_password as  userPassword,

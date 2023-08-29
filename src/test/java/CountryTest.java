@@ -32,10 +32,10 @@ public class CountryTest {
     public void testSelectAll(){
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
-            List<Country> countryList = sqlSession.selectList("selectAll");
-            //List<SysUser> countryList = sqlSession.selectList("selectUserAll");
+            //List<Country> countryList = sqlSession.selectList("selectAll");
+            List<SysUser> countryList = sqlSession.selectList("selectUserAll");
             //printCountryList(countryList);
-            //printSysUserList(countryList);
+            printSysUserList(countryList);
         } finally {
         //不要忘记关闭 sqlSession
             sqlSession.close();
