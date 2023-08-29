@@ -1,6 +1,7 @@
 package mybatis.simple.mapper;
 
 
+import mybatis.simple.model.SysRole;
 import mybatis.simple.model.SysUser;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,7 +28,10 @@ public interface SysUserMapper {
      * @param id
      * @return
      */
-    SysUser selectById(@Param("id") String id);
+    SysUser selectById(@Param("id") int id);
 
+
+
+    List<SysRole> selectRolesByUserid(@Param("id") int id);
 
 }

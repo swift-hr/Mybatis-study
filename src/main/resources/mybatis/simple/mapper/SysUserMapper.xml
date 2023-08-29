@@ -39,6 +39,18 @@
 
         select * from sys_user where id=#{id}
     </select>
+    <select id="selectRolesByUserid" resultType="mybatis.simple.model.SysRole">
+
+        select
+            sr.*,
+            su.user_name,
+            su.user_email
+        from
+			sys_user su
+		INNER join sys_user_role sur on su.id=sur.role_id
+		INNER JOIN sys_role sr on sr.id=sur.role_id
+		where su.id=#{id}
+    </select>
 
 
 </mapper>
