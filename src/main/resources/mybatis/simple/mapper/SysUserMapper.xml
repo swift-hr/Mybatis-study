@@ -26,6 +26,10 @@
           create_time=#{createTime}
           where id=#{id}
     </update>
+    <delete id="delUserById">
+
+        delete from sys_user where id=#{id}
+    </delete>
 
 
     <select id="selectUserAll"

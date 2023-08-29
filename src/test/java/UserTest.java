@@ -14,6 +14,25 @@ public class UserTest extends BaseMapperTest {
 
 
     @Test
+    public void testdeleteUser(){
+        SqlSession sqlSession = this.getSqlSession();
+        try {
+            SysUserMapper userMapper=sqlSession.getMapper(SysUserMapper.class);
+            SysUser user =userMapper.selectById(1);
+            // 现在还能查询出 user 对象
+            Assert.assertNotNull(user) ;
+            userMapper.delUserById(user);
+            // 再次查询就 这里就为null了
+            Assert.assertNotNull(userMapper.selectById(1)) ;
+
+        } finally {
+        //不要忘记关闭 sqlSession
+            sqlSession.rollback();//回滚
+            //sqlSession.commit();//提交
+            sqlSession.close();
+        }
+    }
+    @Test
     public void testUpdateUser(){
         SqlSession sqlSession = this.getSqlSession();
         try {

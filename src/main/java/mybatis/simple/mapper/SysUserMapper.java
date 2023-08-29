@@ -45,5 +45,12 @@ public interface SysUserMapper {
      * @return
      */
     void updateUser(SysUser user);
+    /**
+     *删除用户
+     *
+     * @param user
+     * @return
+     */
+    void delUserById(SysUser user);
 
 }
