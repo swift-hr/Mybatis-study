@@ -2,7 +2,9 @@ package mybatis.simple.mapper;
 
 
 import mybatis.simple.model.SysRole;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 
 import java.util.List;
 
@@ -18,11 +20,25 @@ public interface SysRoleMapper {
 
     SysRole selectRoleAll();
 
-    @Select(" select id, role_name roleName , enabled, \n" +
-            "create_by createBy, \n" +
-            "create_time createTime \n" +
-            "from sys_role \n" +
-            "where id = #{id}")
+//    @Select(" select id, role_name roleName , enabled, \n" +
+//            "create_by createBy, \n" +
+//            "create_time createTime \n" +
+//            "from sys_role \n" +
+//            "where id = #{id}")
+    @Select("select * from sys_role where id = #{id}")
     List<SysRole> selectRole(Long id);
+
+
+    /**
+     * 这是返回主键的一个插入方法
+     * before 为 false 时功能等同于xml中order=" AFTER ”
+     *
+     * */
+    @Insert("   insert into sys_role (role_name, enabled, create_by, create_time )\n" +
+            "            values(#{roleName} , #{enabled}, #{createBy},#{createTime , jdbcType= TIMESTAMP})")
+    @SelectKey(statement = "select LAST_INSERT_ID()",keyProperty ="id",
+              resultType = Long.class,
+              before = false)
+    int insertRole(SysRole sysRole);
 
 }
