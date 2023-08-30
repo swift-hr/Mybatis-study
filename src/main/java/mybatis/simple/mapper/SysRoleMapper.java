@@ -2,9 +2,7 @@ package mybatis.simple.mapper;
 
 
 import mybatis.simple.model.SysRole;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -40,5 +38,13 @@ public interface SysRoleMapper {
               resultType = Long.class,
               before = false)
     int insertRole(SysRole sysRole);
+
+
+    @Update(" update sys_role set role_name=#{roleName} , enable=#{enabled}, create_by=#{createBy}," +
+            "create_time=#{createTime , jdbcType= TIMESTAMP})")
+    int updateRole(SysRole sysRole);
+
+    @Update("delete from sys_role where id=#{id}")
+    int delRoleById(Long id);
 
 }
