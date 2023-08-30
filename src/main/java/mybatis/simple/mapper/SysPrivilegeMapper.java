@@ -2,7 +2,9 @@ package mybatis.simple.mapper;
 
 
 import mybatis.simple.model.SysPrivilege;
-import mybatis.simple.model.SysRolePrivilege;
+import org.apache.ibatis.annotations.SelectProvider;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,7 +16,10 @@ import mybatis.simple.model.SysRolePrivilege;
  */
 public interface SysPrivilegeMapper {
 
-    SysPrivilege selectPrivilegeAll();
+    List<SysPrivilege> selectPrivilegeAll();
+
+    @SelectProvider(type =PrivilegeProvider.class, method = "selectPrivilegeById")
+    SysPrivilege selectPrivilegeById(Long id);
 
 
 }
