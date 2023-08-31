@@ -53,4 +53,20 @@ public interface SysUserMapper {
      */
     void delUserById(SysUser user);
 
+    /**
+     *查询用户  用于if使用
+     *
+     * @param user
+     * @return
+     */
+    List<SysUser> selectByUSer(SysUser user);
+
+    /**
+     *查询用户  用于choose使用
+     *
+     * @param user
+     * @return
+     */
+    List<SysUser> selectByIdOrUserName(SysUser user);
+
 }

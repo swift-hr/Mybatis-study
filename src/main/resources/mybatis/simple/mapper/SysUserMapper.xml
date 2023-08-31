@@ -79,6 +79,36 @@
 		INNER JOIN sys_role sr on sr.id=sur.role_id
 		where su.id=#{id}
     </select>
+    <select id="selectByUSer" resultType="mybatis.simple.model.SysUser">
+        select * from sys_user
+        where 1=1
+        <if test="userName != null or userName != '' ">
+            and user_name like concat('%' #{userName} '%')
+        </if>
+
+
+    </select>
+
+    <select id="selectByIdOrUserName" resultType="mybatis.simple.model.SysUser">
+        select * from sys_user
+        where 1=1
+        <choose>
+            <when test="id !=null or id != ''">
+                AND ID=#{id}
+            </when>
+            <when test="userName != null or userName != '' ">
+                and user_name like concat('%' #{userName} '%')
+            </when>
+            <otherwise>
+                1=2
+            </otherwise>
+        </choose>
+        <if test="userName != null or userName != '' ">
+            and user_name like concat('%' #{userName} '%')
+        </if>
+
+
+    </select>
 
 
 </mapper>
