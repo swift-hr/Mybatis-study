@@ -38,6 +38,15 @@ public interface SysUserMapper {
 
     void insertUser2(SysUser user);
 
+
+    /**
+     *批量插入用户 foreach
+     *
+     * @param user
+     * @return
+     */
+    void insertUser3(List<SysUser> user);
+
     /**
      *更新用户
      *
