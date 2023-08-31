@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -101,7 +102,23 @@ public class UserTest extends BaseMapperTest {
             sqlSession.close();
         }
         }
+    @Test
+    public void testSelectByIds(){
+        SqlSession sqlSession = this.getSqlSession();
+        try {
 
+            SysUserMapper userMapper=sqlSession.getMapper(SysUserMapper.class);
+           // SysUser sysUser = userMapper.selectById(1);
+            List<Long> ids=new ArrayList<>();
+            ids.add(1L);
+            ids.add(1001L);
+            List<SysUser> sysRole = userMapper.selectByIds(ids);
+            //printSysUserList(sysUser);
+        } finally {
+        //不要忘记关闭 sqlSession
+            sqlSession.close();
+        }
+        }
 
 
     private void printSysUserList(SysUser user) {

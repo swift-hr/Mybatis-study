@@ -68,5 +68,12 @@ public interface SysUserMapper {
      * @return
      */
     List<SysUser> selectByIdOrUserName(SysUser user);
+    /**
+     *查询用户  用于choose使用
+     *
+     * @param ids
+     * @return
+     */
+    List<SysUser> selectByIds(@Param("ids") List<Long> ids);
 
 }

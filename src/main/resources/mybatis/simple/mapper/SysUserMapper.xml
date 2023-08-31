@@ -109,6 +109,14 @@
 
 
     </select>
+    <select id="selectByIds" resultType="mybatis.simple.model.SysUser">
+        select * from sys_user where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=" ,">
+            #{id}
+        </foreach>
+
+
+    </select>
 
 
 </mapper>
