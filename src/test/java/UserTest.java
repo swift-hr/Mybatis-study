@@ -118,13 +118,23 @@ public class UserTest extends BaseMapperTest {
         //不要忘记关闭 sqlSession
             sqlSession.close();
         }
+    }
+
+    @Test
+    public void selectUserAndRoleById(){
+        SqlSession sqlSession = this.getSqlSession();
+        try {
+
+            SysUserMapper userMapper=sqlSession.getMapper(SysUserMapper.class);
+            List<SysUser> sysUsers = userMapper.selectUserAndRoleById(1L);
+            System.out.println(sysUsers);
+        } finally {
+        //不要忘记关闭 sqlSession
+            sqlSession.close();
+        }
         }
 
 
-    private void printSysUserList(SysUser user) {
-           // System.out.println("%-4d%4s%4s\n",country.getId(),country.getCountryCode(),country.getCountryName());
-            System.out.println(user.toString());
 
-    }
 
 }

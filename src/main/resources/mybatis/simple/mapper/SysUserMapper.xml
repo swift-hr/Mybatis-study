@@ -128,6 +128,27 @@
 
 
     </select>
+    <select id="selectUserAndRoleById" resultType="mybatis.simple.model.SysUser">
+        select
+          su.id as  id,
+          su.user_name as  userName,
+          su.user_password as  userPassword,
+          su.user_email as  userEmail,
+          su.user_info as  userInfo,
+          su.head_img as  headImg,
+          su.create_time as  createTime,
+		  sr.id as "role.id",
+		  sr.role_name as "role.roleName",
+		  sr.enabled as "role.enabled",
+		  sr.create_by as "role.createBy",
+		  sr.create_time as "role.createTime"
+          from sys_user su
+          inner join sys_user_role  sur on su.id=sur.user_id
+          inner join sys_role sr on sr.id=sur.role_id
+
+          where su.id=#{id}
+
+    </select>
 
 
 </mapper>
