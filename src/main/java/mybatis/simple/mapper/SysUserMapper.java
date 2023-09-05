@@ -93,4 +93,11 @@ public interface SysUserMapper {
      */
     List<SysUser> selectUserAndRoleById(@Param("id") Long id);
 
+    /**
+     *查询用户和角色 针对1对1映射查询
+     *
+     * @return
+     */
+    List<SysUser> selectAllUserAndRoles();
+
 }

@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.simple.mapper.SysUserMapper">
+    <resultMap id="userMap" type="mybatis.simple.model.SysUser">
+        <id property="id" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="userEmail" column="user_email"/>
+        <result property="userInfo" column="user_info"/>
+        <result property="headImg" column="head_img" jdbcType="BLOB"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+<resultMap id="userRoleListMap" extends="userMap" type="mybatis.simple.model.SysUser">
+    <collection property="role" columnPrefix="role_" resultMap="mybatis.simple.mapper.SysRoleMapper.roleMap" />
+</resultMap>
+
+
     <insert id="insertUser">
         insert into sys_user(id,user_name,user_password,user_email,user_info,head_img,create_time)
                 values(#{userName},#{userPassword},#{userEmail},#{userInfo},#{headImg,jdbcType=BLOB},#{createTime,jdbcType=TIMESTAMP})
@@ -149,6 +165,27 @@
           where su.id=#{id}
 
     </select>
+
+
+    <select id="selectAllUserAndRoles" resultMap="userRoleListMap">
+	    select
+	    	u.id,
+	    	u.user_name,
+	        u.user_password,
+	        u.user_email,
+	        u.user_info,
+	        u.head_img,
+	        u.create_time,
+	        r.id role_id,
+			r.role_name role_role_name,
+			r.enabled role_enabled,
+			r.create_by role_create_by,
+			r.create_time role_create_time
+		from sys_user u
+		inner join sys_user_role ur on u.id = ur.user_id
+		inner join sys_role r on ur.role_id = r.id
+
+	</select>
 
 
 </mapper>

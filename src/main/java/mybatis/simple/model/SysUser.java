@@ -1,6 +1,7 @@
 package mybatis.simple.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户表
@@ -35,13 +36,13 @@ public class SysUser {
      * */
     private Date createTime;
 
-    private SysRole role;
+    private List<SysRole> role;
 
-    public SysRole getRole() {
+    public List<SysRole> getRole() {
         return role;
     }
 
-    public void setRole(SysRole role) {
+    public void setRole(List<SysRole> role) {
         this.role = role;
     }
 

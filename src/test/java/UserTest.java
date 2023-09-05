@@ -134,6 +134,20 @@ public class UserTest extends BaseMapperTest {
         }
         }
 
+    @Test
+    public void selectUserAndRoles(){
+        SqlSession sqlSession = this.getSqlSession();
+        try {
+
+            SysUserMapper userMapper=sqlSession.getMapper(SysUserMapper.class);
+            List<SysUser> sysUsers = userMapper.selectAllUserAndRoles();
+            System.out.println(sysUsers);
+        } finally {
+        //不要忘记关闭 sqlSession
+            sqlSession.close();
+        }
+        }
+
 
 
 
